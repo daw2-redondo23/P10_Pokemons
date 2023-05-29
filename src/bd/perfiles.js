@@ -3,7 +3,7 @@ import { supabase } from "./supabase"
 
 export class Perfil {
   // Mapping de propiedades de la tabla perfiles
-  constructor (id = null, created_at = null, nombre = null, apellidos = null, avatar = null, nick = null, usuario_id = null, email = null) {
+  constructor (id = null, created_at = null, nombre = null, apellidos = null, avatar = null, nick = null, usuario_id = null, estado = null, rol = null) {
     this.id = id
     this.created_at = created_at
     this.nombre = nombre
@@ -11,7 +11,8 @@ export class Perfil {
     this.avatar = avatar
     this.nick = nick
     this.usuario_id = usuario_id
-    this.email = email
+    this.estado = estado
+    this.rol = rol
   }
 
   // leer todos
@@ -23,8 +24,8 @@ export class Perfil {
       throw new Error(error.message)
     }
     // devuelve array de objetos
-    return perfiles.map(({id, created_at, nombre, apellidos, avatar, nick, usuario_id, email}) => {
-      return new Perfil(id, created_at, nombre, apellidos, avatar, nick, usuario_id, email)
+    return perfiles.map(({id, created_at, nombre, apellidos, avatar, nick, usuario_id, estado, rol}) => {
+      return new Perfil(id, created_at, nombre, apellidos, avatar, nick, usuario_id, email, estado, rol)
     })
   }
 
@@ -39,7 +40,7 @@ export class Perfil {
       throw new Error(error.message)
     }
     // Devuelve un nuevo objeto con los datos del registro
-    return new Perfil(perfil.id, perfil.created_at, perfil.nombre, perfil.apellidos, perfil.avatar, perfil.nick, perfil.usuario_id, perfil.email)
+    return new Perfil(perfil.id, perfil.created_at, perfil.nombre, perfil.apellidos, perfil.avatar, perfil.nick, perfil.usuario_id, perfil.estado, perfil.rol)
   }
 
   static async getByUserId (id) {
@@ -52,7 +53,7 @@ export class Perfil {
       throw new Error(error.message)
     }
     // Devuelve un nuevo objeto con los datos del registro
-    return new Perfil(perfil.id, perfil.created_at, perfil.nombre, perfil.apellidos, perfil.avatar, perfil.nick, perfil.usuario_id, perfil.email)
+    return new Perfil(perfil.id, perfil.created_at, perfil.nombre, perfil.apellidos, perfil.avatar, perfil.nick, perfil.usuario_id, perfil.estado, perfil.rol)
   }
 
   // crear registro (método static que se puede leer desde la clase sin necesidad de crear una instancia)
@@ -61,7 +62,7 @@ export class Perfil {
       .from('perfiles')
       .insert(perfilData)
       .select()
-      // console.log('nuevo perfil ',error);
+       console.log('nuevo perfil ',error);
     if (error) {
       throw new Error(error.message)
     }
