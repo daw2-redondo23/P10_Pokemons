@@ -1,6 +1,5 @@
 // Importamos la conexión a la base de datos
-import { supabase } from "./supabase"
-
+import { supabase } from './supabase.js'
 
 export class User {
   // Mapping de propiedades de la tabla perfiles
@@ -12,7 +11,7 @@ export class User {
 
   // crear registro (método static que se puede leer desde la clase sin necesidad de crear una instancia)
   static async create (userData) {
-    const { data, error } = await supabase.auth.signUp(userData)
+    let { data, error } = await supabase.auth.signUp(userData)
 
     if (error) {
       throw new Error(error.message)
@@ -31,6 +30,7 @@ export class User {
     console.log('usuario logeado', data.user)
     return new User(data.user.id, data.user.email)
   }
+
   // logout
   static async logout () {
     // USER LOGOUT
