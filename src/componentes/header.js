@@ -1,5 +1,8 @@
+import { Partida } from "../bd/partidas"
 import { Perfil } from "../bd/perfiles"
 import { User } from "../bd/user"
+import { partidas } from "../vistas/partidas"
+import { pokemonsTabla } from "../vistas/pokemonsTabla"
 import { formEditarUsuario } from "./formEditarUsuario"
 
 
@@ -15,6 +18,14 @@ export const header = {
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2560px-International_Pok%C3%A9mon_logo.svg.png" alt="Logo" width="70" height="30" class="d-inline-block align-text-top me-2"/>
           <span class="ms-5">Practica 10</span>
         </a>
+      </div>
+      <div class="col-6 d-flex">
+        <ul class="d-flex list-unstyled">
+          <li class="px-3 py-3"><a id="home">Home</a></li>
+          <li class="px-3 py-3"><a id="partidas">Partidas</a></li>
+          <li class="px-3 py-3"><a id="pokemons">Pokemons</a></li>
+          <li class="px-3 py-3"><a id="perfiles">Perfiles</a></li>
+        </ul>
       </div>
       <div class="col-2 text-end">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -193,6 +204,22 @@ script: async () => {
    
   })
  
+  document.querySelector('#home').addEventListener("click", async(e)=>{
+  })
   
+  document.querySelector('#partidas').addEventListener("click", async(e)=>{
+    document.querySelector('main').innerHTML = partidas.template
+    partidas.script()
+  }) 
+
+  
+  document.querySelector('#pokemons').addEventListener("click", async(e)=>{
+    document.querySelector('main').innerHTML = pokemonsTabla.template
+    pokemonsTabla.script()
+  }) 
+  
+  document.querySelector('#perfiles').addEventListener("click", async(e)=>{
+    
+  })
   }
 }

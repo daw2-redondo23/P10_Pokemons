@@ -1,7 +1,7 @@
 import { supabase } from "./supabase"
 
 
-export class Pokemon {
+export class PokemonBD {
     constructor(id = null, created_at = null, nombre = null, tipo = null, imagen = null, pokedex = null){
         this.id = id
         this.created_at = created_at
@@ -20,7 +20,7 @@ export class Pokemon {
         }
         // devuelve array de objetos
         return pokemons.map(({id, created_at, nombre, tipo, imagen, pokedex}) => {
-          return new Pokemon(id, created_at, nombre, tipo, imagen, pokedex)
+          return new PokemonBD(id, created_at, nombre, tipo, imagen, pokedex)
         })
       }
       static async getById (id) {
@@ -33,10 +33,10 @@ export class Pokemon {
           throw new Error(error.message)
         }
         // Devuelve un nuevo objeto con los datos del registro
-        return new Pokemon(pokemons.id, pokemons.created_at,pokemons.nombre, pokemons.tipo, pokemons.imagen, pokemons.pokedex)
+        return new PokemonBD(pokemons.id, pokemons.created_at,pokemons.nombre, pokemons.tipo, pokemons.imagen, pokemons.pokedex)
       }
 
-      static async create (pokemonData) {
+      static async añadir (pokemonData) {
         const { error } = await supabase
           .from('pokemons')
           .insert(pokemonData)
