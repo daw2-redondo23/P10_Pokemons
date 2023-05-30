@@ -1,5 +1,5 @@
 {
-  "name": "trabajos_alumnos",
+  "name": "pokemon",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -16,6 +16,9 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.6",
-    "bootstrap": "^5.2.3"
+    "@supabase/supabase-js": "^2.10.0",
+    "bootstrap": "^5.2.3",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.7.9"
   }
 }
